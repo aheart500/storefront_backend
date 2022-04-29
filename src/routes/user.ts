@@ -1,9 +1,10 @@
-import Express, { Request, Response } from "express";
+import Express, { Request, RequestHandler, Response } from "express";
+import OrderStore, { OrderStatus } from "../models/order";
 import { User, UserStore } from "../models/user";
 import authenticate from "../utils/middlewares/authenticate";
 
 const store = new UserStore();
-
+const orderStore = new OrderStore();
 const index = async (_req: Request, res: Response) => {
   const users = await store.index();
   res.json(users);
@@ -26,10 +27,19 @@ const login = async (req: Request, res: Response) => {
   res.json(userToken);
 };
 
+const getUserOrders: RequestHandler = (req, res) => {
+  const userOrders = orderStore.getUserOrders(
+    parseInt(req.params.id),
+    req.params.status as OrderStatus
+  );
+  res.json(userOrders);
+};
+
 const userRoutes = (app: Express.Application) => {
   app.get("/users", authenticate, index);
-  app.get("/users/:id", show);
-  app.post("/users", create);
+  app.get("/users/:id", authenticate, show);
+  app.get("/users/:id/orders/:status", authenticate, getUserOrders);
+  app.post("/users", authenticate, create);
   app.post("/users/login", login);
 };
 export default userRoutes;

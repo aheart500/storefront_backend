@@ -29,7 +29,7 @@ export class UserStore {
       conn.release();
       return result.rows[0];
     } catch (e) {
-      throw new Error(`Error getting user with id ${id}: ` + e);
+      throw new Error(`Error getting user with id ${id}: ${e}`);
     }
   }
   async create(user: Omit<User, "id">): Promise<User> {
