@@ -4,8 +4,8 @@ import jwt from "jsonwebtoken";
 import { BCRYPT, JWT_SECRET } from "../config";
 export interface User {
   id: number;
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   password: string;
 }
 
@@ -36,17 +36,16 @@ export class UserStore {
     try {
       const conn = await Client.connect();
       const sql =
-        "INSERT INTO users (firstName, lastName, password) VALUES ($1,$2,$3)";
+        "INSERT INTO users (firstName, lastName, password) VALUES ($1,$2,$3) RETURNING *";
       const hash = bcrypt.hashSync(user.password + BCRYPT.pepper, BCRYPT.salt);
 
       const result = await conn.query(sql, [
-        user.firstName,
-        user.lastName,
+        user.firstname,
+        user.lastname,
         hash,
       ]);
 
       conn.release();
-
       return result.rows[0];
     } catch (e) {
       throw new Error("Error creating user: " + e);
@@ -55,7 +54,7 @@ export class UserStore {
   async login(user: Omit<User, "id">): Promise<string | null> {
     const conn = await Client.connect();
     const sql = "SELECT * from users WHERE firstName=$1 AND lastName=$2";
-    const result = await conn.query(sql, [user.firstName, user.lastName]);
+    const result = await conn.query(sql, [user.firstname, user.lastname]);
     conn.release();
     if (result.rows.length) {
       const savedUser: User = result.rows[0];
