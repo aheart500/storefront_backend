@@ -7,7 +7,8 @@
 3- Run: db-migrate up
 
 Which PORT is used?
-3000
+3000 for server
+5432 for database
 
 Package installation:
 

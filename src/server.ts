@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import userRoutes from "./routes/user";
 import cors from "cors";
-import createRootUser from "./utils/createRootUser";
+
 import productRoutes from "./routes/product";
 import orderRoutes from "./routes/order";
 const app: express.Application = express();
@@ -21,6 +21,6 @@ orderRoutes(app);
 
 app.listen(3000, async function () {
   console.log(`starting app on: ${address}`);
-/*    await createRootUser();  */
+
 });
 export default app
