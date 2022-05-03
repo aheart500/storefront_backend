@@ -6,15 +6,32 @@
 2- Change the POSTGRES_USER and POSTGRES_PASSWORD in .env to your matching postgreSQL username and password
 3- Run: db-migrate up
 
-Which PORT is used?
+## Which PORT is used?
+
 3000 for server
 5432 for database
 
-Package installation:
+## Package installation:
 
 npm install
+.env: {
 
-How to use the app?
+POSTGRES_HOST=127.0.0.1
+POSTGRES_DB=store_db_dev
+POSTGRES_USER=nasser
+POSTGRES_PASSWORD=Aa01149707289
+POSTGRES_TEST_DB=store_db_test
+ENV=dev
+BCRYPT_PEPPER=myNameIsMohamedNasser
+SALT_ROUNDS=11
+ROOT_USER_FIRST_NAME=mohamed
+ROOT_USER_LAST_NAME=nasser
+ROOT_USER_PASSWORD=01149707289
+JWT_SECRET=iLoveChoclate
+
+}
+
+## How to use the app?
 
 Find the routes in the `REQUIREMENTS.md`
 
