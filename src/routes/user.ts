@@ -40,7 +40,7 @@ const userRoutes = (app: Express.Application) => {
   app.get("/users", authenticate, index);
   app.get("/users/:id", authenticate, show);
   app.get("/users/:id/orders/:status", getUserOrders);
-  app.post("/users", authenticate, create);
+  app.post("/users", create);
   app.post("/users/login", login);
 };
 export default userRoutes;
