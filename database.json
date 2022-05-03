@@ -1,0 +1,16 @@
+{
+  "dev": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "store_db_dev",
+    "user": "nasser",
+    "password": "Aa01149707289"
+  },
+  "test": {
+    "driver": "pg",
+    "host": "127.0.0.1",
+    "database": "store_db_test",
+    "user": "nasser",
+    "password": "Aa01149707289"
+  }
+}
