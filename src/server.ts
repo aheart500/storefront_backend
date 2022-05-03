@@ -21,5 +21,6 @@ orderRoutes(app);
 
 app.listen(3000, async function () {
   console.log(`starting app on: ${address}`);
-  /* await createRootUser(); */
+/*    await createRootUser();  */
 });
+export default app

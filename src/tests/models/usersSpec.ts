@@ -1,7 +1,7 @@
 import { UserStore } from "../../models/user";
 
 const store = new UserStore();
-const DUMMY_USER = {
+export const DUMMY_USER = {
   firstname: "Mohamed",
   lastname: "Nasser",
   password: "01149707289",

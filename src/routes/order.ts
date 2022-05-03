@@ -26,6 +26,6 @@ const create: RequestHandler = async (req, res) => {
 const orderRoutes = (app: Express.Application) => {
   app.get("/orders", index);
   app.get("/orders/:id", show);
-  app.post("/order", authenticate, create);
+  app.post("/orders", authenticate, create);
 };
 export default orderRoutes;

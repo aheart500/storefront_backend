@@ -15,8 +15,8 @@ export const BCRYPT = {
 };
 
 export const ROOT_USER = {
-  firstName: ROOT_USER_FIRST_NAME!,
-  lastName: ROOT_USER_LAST_NAME!,
+  firstname: ROOT_USER_FIRST_NAME!,
+  lastname: ROOT_USER_LAST_NAME!,
   password: ROOT_USER_PASSWORD!,
 };
 export const JWT_SECRET = process.env.JWT_SECRET!;
