@@ -2,8 +2,9 @@
 
 ## How to setup and connect to the database?
 
-Create databases with names: store_db_dev, store_db_dev
-Run: db-migrate up
+1- Create databases with names: store_db_dev, store_db_dev
+2- Change the POSTGRES_USER and POSTGRES_PASSWORD in .env to your matching postgreSQL username and password
+3- Run: db-migrate up
 
 Which PORT is used?
 3000
