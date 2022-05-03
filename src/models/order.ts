@@ -31,13 +31,13 @@ class OrderStore {
       throw new Error(`Error getting order with id ${id}: ${e}`);
     }
   }
-  async getUserOrders(user_id: number, status: OrderStatus): Promise<Order> {
+  async getUserOrders(user_id: number, status: OrderStatus): Promise<Order[]> {
     try {
       const conn = await Client.connect();
       const sql = "SELECT * from order_products WHERE user_id=$1 AND status=$2";
       const result = await conn.query(sql, [user_id, status]);
       conn.release();
-      return result.rows[0];
+      return result.rows;
     } catch (e) {
       throw new Error(`Error getting user's order: ${e}`);
     }

@@ -25,7 +25,7 @@ describe("Order Model", () => {
     expect(result.product_id).toEqual('1');
   });
 
-  it("gets a product", async () => {
+  it("gets an order", async () => {
     const result = await store.show(1);
     expect(result.status).toEqual("ACTIVE");
   });

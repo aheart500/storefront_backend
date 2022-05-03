@@ -1,5 +1,27 @@
 # Storefront Backend Project
 
+## How to setup and connect to the database?
+
+Create databases with names: store_db_dev, store_db_dev
+Run: db-migrate up
+
+Which PORT is used?
+3000
+
+Package installation:
+
+npm install
+
+How to use the app?
+
+Find the routes in the `REQUIREMENTS.md`
+
+In order to get a token for the token-requiring endpoints:
+
+You will find a function in the server.js called: createRootUser
+Uncomment the line and excute the code to intiate the root user, then go to /users/login with the user body {firstname:'mohamed', lastname: 'nasser', password: '01149707289'}
+You will get a token to use.
+
 ## Getting Started
 
 This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
@@ -55,8 +77,3 @@ Add JWT functionality as shown in the course. Make sure that JWTs are required f
 Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database.
 
 Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
-
-
-
-Create databases with names: store_db_dev, store_db_dev
-Run: db-migrate up 

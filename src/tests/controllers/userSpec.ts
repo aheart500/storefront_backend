@@ -1,4 +1,6 @@
 import supertest from 'supertest'
+import { Order } from '../../models/order'
+import { User } from '../../models/user'
 import app from '../../server'
 import { DUMMY_USER } from '../models/usersSpec'
 
@@ -32,8 +34,8 @@ describe('User Route', ()=>{
         expect(response.body).toEqual(null)
     })
     it('gets active user orders',async ()=>{
-        const response = await request.get('/users/1/orders/active').set('Authorization', 'Bearer ' + TOKEN)
-        expect(response.body).toBeTruthy()
+        const response = await request.get('/users/1/orders/ACTIVE').set('Authorization', 'Bearer ' + TOKEN)
+        expect((response.body as Array<Order>).every(o => o.status === 'ACTIVE')).toEqual(true)
     })
 })
 

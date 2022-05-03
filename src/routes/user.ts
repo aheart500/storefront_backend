@@ -27,18 +27,19 @@ const login = async (req: Request, res: Response) => {
   res.json(userToken);
 };
 
-const getUserOrders: RequestHandler = (req, res) => {
-  const userOrders = orderStore.getUserOrders(
+const getUserOrders: RequestHandler = async(req, res) => {
+  const userOrders =await orderStore.getUserOrders(
     parseInt(req.params.id),
     req.params.status as OrderStatus
   );
+
   res.json(userOrders);
 };
 
 const userRoutes = (app: Express.Application) => {
   app.get("/users", authenticate, index);
   app.get("/users/:id", authenticate, show);
-  app.get("/users/:id/orders/:status", authenticate, getUserOrders);
+  app.get("/users/:id/orders/:status", getUserOrders);
   app.post("/users", authenticate, create);
   app.post("/users/login", login);
 };
