@@ -25,26 +25,31 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Current Order by user (args: user id)[token required] '/users/:id/orders/ACTIVE' [GET]
 - [OPTIONAL] Completed Orders by user (args: user id)[token required] '/users/:id/orders/COMPLETE' [GET]
 
-## Data Shapes
+## Database Schema
 
-#### Product
+## users table
 
-- id [integer]
-- name [varchar]
-- price: [integer]
-- [OPTIONAL] category [varchar]
+id `[SERIAL PRIMARY KEY]`
+firstName [VARCHAR(100)]
+lastName [VARCHAR(100)]
+password [TEXT]
 
-#### User
+## products table
 
-- id [integer]
-- firstname [varchar]
-- lastname [varchar]
-- password [text]
+id `[SERIAL PRIMARY KEY]`
+name [VARCHAR(100)]
+price [integer]
+category [VARCHAR(100)]
 
-#### Orders
+## orders table
 
-- id [integer]
-- id of each product in the order [integer] [foreign key to products[id]]
-- quantity of each product in the order [integer]
-- user_id [integer] [foreign key to users[id]]
-- status of order (active or complete) [varchar]
+id `[SERIAL PRIMARY KEY]`
+user_id `[BIGINT REFERENCES users(id)]`
+status [VARCHAR(100)]
+
+## order_products table
+
+id `[SERIAL PRIMARY KEY]`
+quantity [INTEGER]
+product_id `[BIGINT REFERENCES products(id)]`
+order_id `[BIGINT REFERENCES orders(id)]`

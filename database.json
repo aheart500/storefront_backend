@@ -1,16 +1,16 @@
 {
   "dev": {
     "driver": "pg",
-    "host": "127.0.0.1",
-    "database": "store_db_dev",
-    "user": "nasser",
-    "password": "Aa01149707289"
+    "host": {"ENV": "POSTGRES_HOST"},
+    "database": {"ENV": "POSTGRES_DB"},
+    "user": {"ENV": "POSTGRES_USER"},
+    "password": {"ENV": "POSTGRES_PASSWORD"}
   },
   "test": {
     "driver": "pg",
-    "host": "127.0.0.1",
-    "database": "store_db_test",
-    "user": "nasser",
-    "password": "Aa01149707289"
+    "host": {"ENV": "POSTGRES_HOST"},
+    "database": {"ENV": "POSTGRES_TEST_DB"},
+    "user": {"ENV": "POSTGRES_USER"},
+    "password": {"ENV": "POSTGRES_PASSWORD"}
   }
 }

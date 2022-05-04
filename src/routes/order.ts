@@ -6,19 +6,26 @@ import authenticate from "../utils/middlewares/authenticate";
 const store = new OrderStore();
 const productStore = new ProductStore();
 const index: RequestHandler = async (_req, res) => {
-  const orders = await store.index();
-  res.json(orders);
+  try {
+    const orders = await store.index();
+    res.json(orders);
+  } catch (e) {
+    res.status(400).json(e);
+  }
 };
 const show: RequestHandler = async (req, res) => {
-  const order = await store.show(parseInt(req.params.id));
-  res.json(order);
+  try {
+    const order = await store.show(parseInt(req.params.id));
+    res.json(order);
+  } catch (e) {
+    res.status(400).json(e);
+  }
 };
 
 const create: RequestHandler = async (req, res) => {
   try {
     const order: Order = req.body;
     const newOrder = await store.create(order);
-
     res.send(newOrder);
   } catch (e) {
     res.status(400).json(e);
@@ -39,8 +46,8 @@ const addOrderProduct: RequestHandler = async (req, res) => {
   }
 };
 const orderRoutes = (app: Express.Application) => {
-  app.get("/orders", index);
-  app.get("/orders/:id", show);
+  app.get("/orders", authenticate, index);
+  app.get("/orders/:id", authenticate, show);
   app.post("/orders", authenticate, create);
   app.post("/orders/:id/products", authenticate, addOrderProduct);
 };

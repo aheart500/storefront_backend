@@ -5,12 +5,20 @@ import authenticate from "../utils/middlewares/authenticate";
 const store = new ProductStore();
 
 const index: RequestHandler = async (_req, res) => {
-  const products = await store.index();
-  res.json(products);
+  try {
+    const products = await store.index();
+    res.json(products);
+  } catch (e) {
+    res.status(400).json(e);
+  }
 };
 const show: RequestHandler = async (req, res) => {
-  const product = await store.show(parseInt(req.params.id));
-  res.json(product);
+  try {
+    const product = await store.show(parseInt(req.params.id));
+    res.json(product);
+  } catch (e) {
+    res.status(400).json(e);
+  }
 };
 
 const create: RequestHandler = async (req, res) => {
