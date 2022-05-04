@@ -1,5 +1,5 @@
 import Express, { RequestHandler } from "express";
-import ProductStore, { Product } from "../models/product";
+import ProductStore, { ORDER_PRODUCT, Product } from "../models/product";
 import authenticate from "../utils/middlewares/authenticate";
 
 const store = new ProductStore();

@@ -1,15 +1,17 @@
 import OrderStore, { Order } from "../../models/order";
+import { UserStore } from "../../models/user";
+import { DUMMY_USER } from "./usersSpec";
 
 const store = new OrderStore();
-export const DUMMY_ORDER: Omit<Order,'id'>= {
-quantity: 2,
-status: "ACTIVE",
-product_id: '1',
-user_id: '1'
+const usersStore = new UserStore();
+export const DUMMY_ORDER: Omit<Order, "id"> = {
+  status: "ACTIVE",
+  user_id: "1",
 };
 
 describe("Order Model", () => {
   beforeAll(async () => {
+    await usersStore.create(DUMMY_USER);
     await store.create(DUMMY_ORDER);
   });
 
@@ -22,12 +24,11 @@ describe("Order Model", () => {
   });
   it("creates an order", async () => {
     const result = await store.create(DUMMY_ORDER);
-    expect(result.product_id).toEqual('1');
+    expect(result.user_id).toEqual("1");
   });
 
   it("gets an order", async () => {
     const result = await store.show(1);
     expect(result.status).toEqual("ACTIVE");
   });
- 
 });

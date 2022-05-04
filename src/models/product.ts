@@ -7,6 +7,13 @@ export interface Product {
   category: string;
 }
 
+export interface ORDER_PRODUCT {
+  id: number;
+  order_id: number;
+  product_id: number;
+  quantity: number;
+}
+
 class ProductStore {
   async index(): Promise<Product[]> {
     try {
@@ -44,6 +51,24 @@ class ProductStore {
       return result.rows[0];
     } catch (e) {
       throw new Error("Error creating product: " + e);
+    }
+  }
+  async addProductToOrder(
+    o: Omit<ORDER_PRODUCT, "id">
+  ): Promise<ORDER_PRODUCT> {
+    try {
+      const conn = await Client.connect();
+      const sql =
+        "INSERT INTO order_products (order_id, product_id, quantity) VALUES ($1,$2,$3) RETURNING *";
+      const result = await conn.query(sql, [
+        o.order_id,
+        o.product_id,
+        o.quantity,
+      ]);
+      conn.release();
+      return result.rows[0];
+    } catch (e) {
+      throw new Error("Error adding product to order: " + e);
     }
   }
 }
