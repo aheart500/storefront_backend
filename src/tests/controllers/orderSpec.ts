@@ -19,11 +19,15 @@ describe("Order Route", () => {
       .set("Authorization", "Bearer " + TOKEN);
   });
   it("Fetches all orders", async () => {
-    const response = await request.get("/orders");
+    const response = await request
+      .get("/orders")
+      .set("Authorization", "Bearer " + TOKEN);
     expect(response.status).toEqual(200);
   });
   it("Fetches certain order", async () => {
-    const response = await request.get("/orders/1");
+    const response = await request
+      .get("/orders/1")
+      .set("Authorization", "Bearer " + TOKEN);
     expect(response.status).toEqual(200);
   });
   it("Creates an order", async () => {
